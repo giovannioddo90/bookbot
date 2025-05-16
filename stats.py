@@ -1,22 +1,22 @@
 def count_words(book_text):
-    words = book_text.split()
-    count = 0
-
-    for word in words:
-        count += 1
-    
-    return count
+    return len(book_text.split())
 
 def char_count(book_text):
-    words = book_text.lower()
-
+    text = book_text.lower()
     char_count = {}
 
-    for character in words:
-        if character not in char_count:
-            char_count[character] = 1
-        else:
-            char_count[character] += 1
+    for char in text:
+        char_count[char] = char_count.get(char, 0) + 1
 
     return char_count
 
+def sort_dict(char_dict):
+    sorted_list = []
+
+    for char, count in char_dict.items():
+        if char.isalpha():
+            sorted_list.append({"char": char, "num": count})
+    
+    sorted_list.sort(key=lambda d: d["num"], reverse=True)
+
+    return sorted_list
